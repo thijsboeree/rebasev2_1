@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @question.subject %>
+</p>
+
+<p>
+  <b>Explanation:</b>
+  <%= @question.body %>
+</p>
+
+<% for image in @question.images %>
+  <%= image_tag (image.image.url(:thumb)) %>
+<% end %>
+
+
+
+
+<div id="votingform">
+<table>
+<% if current_user.can_vote_on? (@question) %><!-- if a current user has not yet voted.. -->
+  
+  <% for answer in @question.answers %>
+     <tr> 
+	     <td>
+       </td>
+       <td>
+         <%= answer.text %>
+       </td>
+       <td>
+         <%= form_tag('/vote', :method => "post") do %>
+         <%= hidden_field_tag('vote[answer_id]', answer.id) %>
+         <%= submit_tag("Vote") %>   
+         <% end %>    <!-- vote button.. -->
+       </td>
+      </tr>
+   <% end %>
+      <tr>
+          <td>
+            Other:
+          </td>
+          <td>
+            <%= form_tag('/vote/new_answer', :method => "post") do %>
+            <%= hidden_field_tag('answer[question_id]', @question.id) %>
+            <%= hidden_field_tag('answer[user_id]', current_user.id) %>
+            <%= text_field_tag('answer[text]') %>
+          </td>
+          <td>
+            <%= submit_tag('Vote') %>
+            <% end %>
+          </td>
+         </tr>
+<% else %>
+         
+           <% for answer in @question.answers %> 
+           <tr> 
+             <% if current_user.voted_answer? (answer) %>
+            <td>
+              <strong><%= answer.text %></strong> 
+            </td>
+            <td>
+              <%= answer.votes.count %>
+            </td>
+           <% else %>
+            <td>
+              <%= answer.text %>
+            </td>
+            <td>
+              <%= answer.votes.count %>
+            </td> 
+           <% end %> 
+          </tr>
+          <% end %>
+<% end %>
+</table>     
+</div>
+
+
+ 
+<h2>Add a comment:</h2>
+<%= form_for([@question, @question.comments.build]) do |f| %>
+ 
+  <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_area :text, :rows => 3 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<% if can? :edit, @question %>
+  <%= link_to 'Edit', edit_question_path(@question) %>
+  <%= " | " %>
+<% end %>
+<%= link_to 'Back', questions_path %>
+
+
+

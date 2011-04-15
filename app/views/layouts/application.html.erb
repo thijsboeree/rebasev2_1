@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rebase</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults, :cache => true %>
+  <%= javascript_include_tag :cocoon %>
+  <%= csrf_meta_tag %>
+  <%= yield (:head) %>
+</head>
+
+
+
+<body>
+
+	<div class="container">
+		<header>
+			<nav class="round">
+				<ul>
+					<li><%= link_to "Home", '#' %></li>
+					<li><%= link_to "Help", '#' %></li>
+					<% if user_signed_in? %>
+					<li><%= link_to 'Sign out', '/users/sign_out' %></li>
+					<% else %>
+					<li><%= link_to 'Signup', '/users/sign_up' %></li>
+					<li><%= link_to 'Sign in', '/users/sign_in' %></li>
+					<% end %>
+					
+				</ul>
+
+			</nav>
+
+		</header>
+
+		<section class="round">
+			<%= yield %>
+		</section>
+
+	</div>
+	
+	<p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+
+
+ 
+
+</body>
+</html>

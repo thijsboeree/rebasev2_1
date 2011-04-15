@@ -1,0 +1,3 @@
+class MeshesController < ApplicationController
+  
+end

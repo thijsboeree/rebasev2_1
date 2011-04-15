@@ -1,0 +1,78 @@
+<h1>Listing questions</h1>
+<div class="wall" >
+<table>
+  <tr>
+    <th>Subject</th>
+    <th>Body</th>
+    <th>Author</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td><%= question.subject %></td>
+    <td><%= question.body %></td>
+    <td><%= question.user %></td>
+    <td><%= link_to 'Show', question %></td>
+    <td><%= link_to 'Edit', edit_question_path(question) if can? :edit, question %></td>
+    <td><%= link_to 'Destroy', question, :confirm => 'Are you sure?', 
+																				 :method => :delete if can? :destroy, question %>
+		</td>
+	</tr>
+<% if question.comments.first %>
+<tr>
+<td>Comment:</td>
+</tr>	
+<% question.comments.each do |comment| %>
+	<tr>
+    <td>&nbsp;&nbsp;<%= comment.text %></td>
+    <td></td>
+    <td></td>
+		<td><%= comment.user %></td>
+    <td></td>
+    <td><%= link_to 'Edit', edit_comment_path(comment) if can? :edit, comment %></td>
+    <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?',  
+																				:method => :delete if can? :destroy, comment %></td>	
+	</tr>
+	<% end %>
+
+<% end %>
+<tr>
+<td>
+<br />
+</td>
+</tr>
+
+<% end %>
+</table>
+<br />
+
+<%= link_to 'New Question', new_question_path %>
+
+<h1>My questions</h1>
+
+<table>
+  <tr>
+    <th>Subject</th>
+    <th>Body</th>
+    <th>Author</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% current_user.questions.each do |question| %>
+  <tr>
+    <td><%= question.subject %></td>
+    <td><%= question.body %></td>
+    <td><%= question.user %></td>
+    <td><%= link_to 'Show', question %></td>
+    <td><%= link_to 'Edit', edit_question_path(question) if can? :edit, question %></td>
+    <td><%= link_to 'Destroy', question, :confirm => 'Are you sure?', :method => :delete if can? :destroy, question %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+</div>

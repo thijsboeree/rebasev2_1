@@ -1,0 +1,178 @@
+body { background-color: #fff; color: #333; }
+
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+
+div.fields a { color: #555; }
+div.fields a:visited { color: #666; }
+div.fields a:hover { color: #fff; background-color:#888; }
+
+
+div.field, div.fields, div.actions {
+  margin-bottom: 10px;
+	margin-left: 10px;
+	
+	
+}
+
+label {
+	float: left; clear: left; margin: 0 1em 0 0; width: 95px;
+	text-align: right; font-size: 13px; color: #888;
+	padding: 0.2em;
+	
+}
+
+div.field input, div.fields input, div.field textarea {
+	width: 14em; padding: 0.2em; margin: 0 0 1em 0;
+	background: #fff;
+	/*background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%);  firefox */
+/*	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D));  webkit */
+	border-radius: 0 0 2px 0; 
+	-moz-border-radius: 0 0 2px 0; 
+	-webkit-border-radius: 0 0 2px 0;
+
+	-moz-box-shadow: inset 0 0 3px #aaa;
+	-webkit-box-shadow: inset 0 0 3px #aaa;
+
+	/*-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 10px 0px #f2f2f2; */
+	font-family: sans-serif; font-size: 13px; color: #666; /*text-transform: uppercase; text-shadow: 0px -1px 0px #334f71; */
+	border: 0px;
+}
+
+
+
+#filloutform, #votingform {
+	width: 430px; margin: 60px auto; padding: 60px 30px;
+	background: #fff; border: 0px solid #e1e1e1;
+	-moz-box-shadow: 0px 0px 8px #444;
+	-webkit-box-shadow: 0px 0px 8px #444;
+
+	border-radius: 0 0 4px 0; 
+	-moz-border-radius: 0 0 4px 0; 
+	-webkit-border-radius: 0 0 4px 0;
+}
+
+
+input[type=submit] {
+	float: none;
+	padding: 0.2em; margin: 1em;
+	-moz-box-shadow: 0px 0px 5px #999;-webkit-box-shadow: 0px 0px 5px #999;
+	border: 1px solid #000;
+	background: #fff; 
+	-moz-box-shadow: 0px 0px 8px #444;
+	-webkit-box-shadow: 0px 0px 8px #444; 
+	cursor: pointer;
+	border-radius: 2px; 
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px;
+
+}
+
+
+
+
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+
+/* stylesheets/application.css */
+.simple_form label {
+  float: left;
+  width: 100px;
+  text-align: left;
+  margin: 2px 10px;
+}
+
+.simple_form div.input {
+  margin-bottom: 10px;
+  
+}
+
+.simple_form div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
+
+.simple_form div.boolean label, .simple_form label.collection_radio {
+  float: none;
+  margin: 0;
+}
+
+.simple_form label.collection_radio {
+  margin-right: 10px;
+  margin-left: 2px;
+}
+
+.simple_form .error {
+  clear: left;
+  margin-left: 120px;
+  font-size: 12px;
+  color: #D00;
+  display: block;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  font-size: 12px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+
+
+.simple_form div.fields {
+	float: none;
+	margin: 2px 10px;
+}
+
+.simple_form div.button {
+	float: none;
+}

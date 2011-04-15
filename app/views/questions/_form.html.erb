@@ -1,0 +1,48 @@
+<%= form_for @question, :html => { :multipart => true } do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div id="filloutform">
+  <div class="field">
+		<%= f.label :subject %>
+    <%= f.text_field :subject %>
+	</div>
+
+	<div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body, :rows => 3 %>
+  </div>
+  
+		<% f.fields_for :answers do |answer| %>
+			<%= render "answer_fields", :f => answer %>
+		<% end %>
+
+    <% f.fields_for :images do |builder| %>
+			<%= render "image_form", :f => builder %>
+		<% end %>
+
+<br />
+
+<div class="fields">
+<%= link_to_add_association "Add Answer", f, :answers %>
+</div>
+
+    
+<br />
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+</div>
+<% end %>
