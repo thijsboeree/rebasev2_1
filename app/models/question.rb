@@ -22,4 +22,6 @@ class Question < ActiveRecord::Base
     !question.answers.joins(:votes).where('votes.user_id = ?', id).exists?
   end
 
+  
+
 end

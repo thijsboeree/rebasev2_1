@@ -1,6 +1,6 @@
 	<div class="nested-fields">
 			<%= f.label :answer %>
-		  <%= f.text_field :text %>
+		  <%= default_text_field :text, "Possible Answer", f, :add_on_data => :answers %>
 			<%= link_to_remove_association "Remove", f %>
 	</div>
 

@@ -17,7 +17,7 @@ Rebase::Application.routes.draw do
 
   get "questions/new"
   
-  resources :uploads
+  resources :images
 
   devise_for :users
 

@@ -1,91 +1,40 @@
 class ImagesController < ApplicationController
-  # GET /images
-  # GET /images.xml
-  def index
-    @images = Image.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @images }
-    end
-  end
-
-  # GET /images/1
-  # GET /images/1.xml
-  def show
-    @image = Image.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @image }
-    end
-  end
-
-  # GET /images/new
-  # GET /images/new.xml
-  def new
-    @image = Image.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @image }
-    end
-  end
-
-  # GET /images/1/edit
-  def edit
+   def show
     @image = Image.find(params[:id])
   end
 
-  # POST /images
-  # POST /images.xml
   def create
     @image = Image.new(params[:image])
-
-    respond_to do |format|
-      if @image.save
-        if params[:image][:image].blank?
-          format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
-          format.xml  { render :xml => @image, :status => :created, :location => @image }
-        else
-          render :action => "crop" 
-        end
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @image.errors, :status => :unprocessable_entity }
-      end
+    if @image.save
+      render :json => { :pic_path => @image.image.url.to_s , :name => @image.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
+    else
+      #todo handle error
+      render :json => { :result => 'error'}, :content_type => 'text/html'
     end
   end
-
-  # PUT /images/1
-  # PUT /images/1.xml
+  
   def update
     @image = Image.find(params[:id])
-
-    respond_to do |format|
-      if @image.update_attributes(params[:image])
-        if params[:image][:image].blank?
-          format.html { redirect_to(@image, :notice => 'Image was successfully updated.') }
-          format.xml  { head :ok }
-        else
-          render :action => "crop" 
-        end
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @image.errors, :status => :unprocessable_entity }
-      end
+    if @image.update_attributes(params[:image])
+      flash[:notice] = "Successfully updated image."
+      redirect_to root_path
     end
   end
 
-  # DELETE /images/1
-  # DELETE /images/1.xml
-  def destroy
-    @image = Image.find(params[:id])
-    @image.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(images_url) }
-      format.xml  { head :ok }
-    end
+  def show_pic
+    @image = current_image
+    geo = Paperclip::Geometry.from_file(@image.image.to_file(:original))
+    @adapter = geo.width > Image::MAX_CROP_WIDTH.to_f ? geo.width/Image::MAX_CROP_WIDTH.to_f : 1
+    @width = geo.width
+    @height = geo.height
   end
+
+  def show_crop
+    @image = current_image
+  end
+  
+  def current_image
+    Image.last #to change according to what you expect, example: current_user.avatar
+  end
+
 end

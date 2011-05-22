@@ -64,9 +64,14 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-          
+        p params
+        if params[:question][:images].blank? 
           format.html { redirect_to(@question, :notice => 'Question was successfully created.') }
           format.xml  { render :xml => @question, :status => :created, :location => @question }
+          #render :action => "images/crop" 
+        else
+          #render :action => "images/crop" 
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }

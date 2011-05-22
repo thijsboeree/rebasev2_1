@@ -32,21 +32,21 @@ div.fields a:visited { color: #666; }
 div.fields a:hover { color: #fff; background-color:#888; }
 
 
-div.field, div.fields, div.actions {
+div.field, div.fields, div.actions, div.nested-fields{
   margin-bottom: 10px;
 	margin-left: 10px;
 	
 	
 }
 
-label {
+label, div.fields.add_fields a {
 	float: left; clear: left; margin: 0 1em 0 0; width: 95px;
 	text-align: right; font-size: 13px; color: #888;
 	padding: 0.2em;
 	
 }
 
-div.field input, div.fields input, div.field textarea {
+div.field input, div.fields input, div.field textarea, div.nested-fields input {
 	width: 14em; padding: 0.2em; margin: 0 0 1em 0;
 	background: #fff;
 	/*background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%);  firefox */
@@ -184,4 +184,8 @@ input[type=submit] {
 
 .simple_form div.button {
 	float: none;
+}
+
+.gray-input {
+color: #8F8;
 }
